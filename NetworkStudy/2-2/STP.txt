@@ -1,0 +1,43 @@
+問１　A.Switch3
+ルートブリッジは、ブリッジIDが最も小さいスイッチになるため、ブリッジプライオリティが最も小さいSwitch3が答え。
+
+問２　A.ルートポート・・・Switch1(F0/2),Switch2(F0/1),Switch4(E0/2)
+       指定ポート・・・・Switch1(F0/1),Switch2(F0/2),Switch3(E0/1),Switch3(E0/1)
+       非指定ポート・・・Switch4(E0/1)
+       
+まずショートパスコストを求める。
+F0/1,F0/2=100Mbps=19(ショートパスコスト)
+E0/1,E0/2=10Mbps=100(ショートパスコスト)
+
+続いてルートパスコストを求める。
+Switch3→Switch1 0
+Switch3→Switch4 0
+Switch1→Switch2 0+19=19
+Switch2→Switch4 19+19=38
+Switch4→switch2 0+100=100
+Switch2→Switch1 100+19=119
+
+また、それぞれのスイッチで、BPDUを受け取るポートのパスコストを求める。
+Switch1(F0/1) 119+19=138
+Switch1(F0/2) 0+19=19
+Switch2(F0/1) 19+19=38
+Switch2(F0/2) 100+19=119
+Switch4(E0/1) 38+100=138
+Switch4(E0/2) 0+100=100
+
+ルートポートは累計のルートパスコストが最も小さいポートであるため
+Switch1(F0/2)<Switch1(F0/1)より、Switch1のルートポートはF0/2
+Switch2(F0/1)<Switch2(F0/2)より、Switch2のルートポートはF0/1
+Switch4(E0/2)<Switch4(E0/1)より、Switch4のルートポートはE0/2
+
+指定ポートはルートパスコストが最も小さいBPDUを送信するポートであり
+また、ルートブリッジのポートは全て指定ポートになることから
+Switch1→Switch2<Switch2→Switch1より、Switch1(F0/1)が指定ポート
+Switch2→Switch4<Switch4→switch2より、Switch2(F0/2)が指定ポート
+Switch3(E0/1),Switch3(E0/1)が指定ポート
+
+非指定ポートは役割が決まらず残ったポートであるため
+Switch4(E0/1)が非指定ポート
+
+
+
