@@ -24,10 +24,10 @@ MACアドレスを24ビットに分解し、間にFFFEを挿入
 （３）MACアドレス：FFFF.FFFF.FFFF
 
 MACアドレスを24ビットに分解し、間にFFFEを挿入
-　　FF FF FF FF FE FF FF FE
+　　FF FF FF FF FE FF FF FF
 ２進数に変換し、７ビット目を反転
 　　1111 1111 → 1111 1101
 16進数に変換
 　　1111 1101 → FD
 
-インターフェースID：FD FF FF FF FE FF FF FE
+インターフェースID：FD FF FF FF FE FF FF FF
